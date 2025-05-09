@@ -11,7 +11,22 @@ exports.listActivities = async (req, res) => {
 
 exports.addActivity = async (req, res) => {
   try {
-    const { title, description, location, date, time } = req.body;
+    const body = req.body;
+
+    if (Array.isArray(body)) {
+      const isValid = body.every(item =>
+        item.title && item.description && item.location && item.date && item.time
+      );
+
+      if (!isValid) {
+        return res.status(400).json({ message: 'All fields are required for each activity' });
+      }
+
+      const activities = await Activity.insertMany(body);
+      return res.status(201).json({ message: 'Activities added successfully', activities });
+    }
+
+    const { title, description, location, date, time } = body;
 
     if (!title || !description || !location || !date || !time) {
       return res.status(400).json({ message: 'All fields are required' });
@@ -21,7 +36,9 @@ exports.addActivity = async (req, res) => {
     await activity.save();
 
     res.status(201).json({ message: 'Activity added successfully', activity });
+
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Failed to add activity' });
   }
 };
