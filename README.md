@@ -12,9 +12,29 @@
 - JWT + bcrypt
 - express-validator
 
-Here's a complete list of your API endpoints along with sample **JSON request bodies**, **methods**, and **expected responses** — perfect for including in your `README.md` for easy Postman testing.
 
----
+## 🔧 Setup Instructions
+
+1. Clone the repo and run:
+
+   ```bash
+   npm install
+   ```
+
+2. Create a `.env` file and add:
+
+   ```env
+   PORT=5000
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret_key
+   ```
+
+3. Start the server:
+
+   ```bash
+   npm run dev
+   ```
+
 
 ## 📘 API Documentation for Activity Booking App
 
@@ -195,25 +215,3 @@ Here's a complete list of your API endpoints along with sample **JSON request bo
 ```
 
 ---
-
-## 🔧 Setup Instructions
-
-1. Clone the repo and run:
-
-   ```bash
-   npm install
-   ```
-
-2. Create a `.env` file and add:
-
-   ```env
-   PORT=5000
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret_key
-   ```
-
-3. Start the server:
-
-   ```bash
-   npm run dev
-   ```
